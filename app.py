@@ -13,10 +13,20 @@ from datetime import datetime
 # Used to generate a random key for the session
 import secrets
 
-# Importing the database class
-from database_class import Database
+# Import blueprints
+from routes.auth import auth_bp
+from routes.main import main_bp
+from routes.projects import projects_bp
 
 app = Flask(__name__)
 
+# Register blueprints
+app.register_blueprint(auth_bp)
+app.register_blueprint(main_bp)
+app.register_blueprint(projects_bp)
+
 # Secret key for the session
 app.secret_key = secrets.token_urlsafe(16)
+
+if __name__ == '__main__':
+    app.run(debug=True)

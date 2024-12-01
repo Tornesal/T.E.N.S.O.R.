@@ -4,7 +4,7 @@ from database_class import Database
 projects_bp = Blueprint('projects', __name__)
 
 # Database instance
-db = Database(uri="your_mongo_uri", database_name="your_db_name")
+#db = Database(uri="your_mongo_uri", database_name="your_db_name")
 
 @projects_bp.route('/projects', methods=['GET', 'POST'])
 def projects():

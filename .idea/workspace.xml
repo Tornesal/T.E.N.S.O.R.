@@ -4,21 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5775f831-6e07-48f7-9db8-3c1f05302b12" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/T.E.N.S.O.R.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/database_class.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/projects.py" afterDir="false" />
+    <list default="true" id="5775f831-6e07-48f7-9db8-3c1f05302b12" name="Changes" comment="First commit">
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/static/dist/tailwind.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/static/src/tailwind.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/tailwind.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/database_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/database_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/projects.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/projects.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +30,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -50,26 +54,33 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2pGnQpTDuCy4VS8px18mBnD0cde" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "E:/Python Projects/T.E.N.S.O.R",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Python Projects/T.E.N.S.O.R&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Markdown&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Python Projects\T.E.N.S.O.R" />
@@ -117,11 +128,74 @@
       <option name="presentableId" value="Default" />
       <updated>1732401267066</updated>
       <workItem from="1732401268450" duration="329000" />
-      <workItem from="1732401621627" duration="1826000" />
+      <workItem from="1732401621627" duration="2091000" />
+      <workItem from="1732999116646" duration="101000" />
+      <workItem from="1732999253316" duration="161000" />
+      <workItem from="1732999474452" duration="13000" />
+      <workItem from="1732999494113" duration="19000" />
+      <workItem from="1732999518358" duration="29000" />
+      <workItem from="1732999552342" duration="44000" />
+      <workItem from="1732999725812" duration="171000" />
+      <workItem from="1733000015524" duration="23000" />
+      <workItem from="1733000060575" duration="49000" />
+      <workItem from="1733000138682" duration="63000" />
+      <workItem from="1733000211981" duration="32000" />
+      <workItem from="1733000252318" duration="16000" />
+      <workItem from="1733000279923" duration="1313000" />
+      <workItem from="1733002673735" duration="7465000" />
+      <workItem from="1733012442411" duration="692000" />
     </task>
+    <task id="LOCAL-00001" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1732403618662</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732403618662</updated>
+    </task>
+    <task id="LOCAL-00002" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1732403713813</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732403713813</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/T_E_N_S_O_R_$app.coverage" NAME="app Coverage Results" MODIFIED="1733011938465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../T.E.N.S.O.R" />
   </component>
 </project>

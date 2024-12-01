@@ -5,14 +5,22 @@ from database_class import Database
 auth_bp = Blueprint('auth', __name__)
 
 # Database instance
-db = Database(uri="your_mongo_uri", database_name="your_db_name")
+#db = Database(uri="your_mongo_uri", database_name="your_db_name")
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # Handle login logic
-        pass
+        return handle_login()
+    return render_login_template()
+
+def render_login_template():
     return render_template('login.html')
+
+def handle_login():
+    username = request.form['username']
+    password = request.form['password']
+
+    # Rest of the stuff here
 
 @auth_bp.route('/logout')
 def logout():

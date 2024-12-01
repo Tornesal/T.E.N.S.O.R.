@@ -2,11 +2,17 @@ import pymongo
 from pymongo.errors import ConnectionFailure, PyMongoError
 from flask import redirect, url_for, session
 import datetime
+from dotenv import load_dotenv
+import os
 
 # Database class to handle DB connection and errors
 
 class Database:
-    def __init__(self, uri, database_name):
+    def __init__(self, uri=None, database_name="your_db_name"):
+
+        # Load the environment variables
+        if uri is None:
+            uri = os.getenv("MONGO_URI")
 
         # Set connections 2 none to set up DB connection check
         self.client = None
