@@ -10,6 +10,9 @@ import os
 class Database:
     def __init__(self, uri=None, database_name="your_db_name"):
 
+        # Load the environment variables from the .env file
+        load_dotenv()
+
         # Load the environment variables
         if uri is None:
             uri = os.getenv("MONGO_URI")
@@ -18,11 +21,14 @@ class Database:
         self.client = None
         self.db = None
 
+        # Timeout variable to control how long DB attempts to connect
+        timeout = 10
+
         # Retry connection 3 times. This will help to handle any connection errors and break out of loop upon
         # successful connection.
         for attempt in range(3):
             try:
-                self.client = pymongo.MongoClient(uri)
+                self.client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=timeout * 1000)
 
                 # The ismaster is used to check if DB connection was successful
                 self.client.admin.command('ismaster')
@@ -36,6 +42,16 @@ class Database:
             except ConnectionFailure:
                 # If connection fails, continue to the next iteration of the loop
                 continue
+
+            except RuntimeError:
+                # Redirect to error page
+                error_message = "Could not connect to the database. Please try again later."
+                redirect(url_for('error', message=error_message))
+
+            except Exception as e:
+                # Redirect to error page
+                error_message = "An error occurred while connecting to the database. Please try again later."
+                redirect(url_for('error', message=error_message))
 
         # If connection still fails after 3 attempts
         if self.client is None or self.db is None:

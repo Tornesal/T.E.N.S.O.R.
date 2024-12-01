@@ -1,11 +1,12 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session
 from flask_bcrypt import generate_password_hash, check_password_hash
 from database_class import Database
+import os
 
 auth_bp = Blueprint('auth', __name__)
 
 # Database instance
-#db = Database(uri="your_mongo_uri", database_name="your_db_name")
+db = Database(database_name="users")
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -17,10 +18,38 @@ def render_login_template():
     return render_template('login.html')
 
 def handle_login():
-    username = request.form['username']
-    password = request.form['password']
+    # If structure to get the username and password and pass it into the check function
+    if request.method == 'POST':
+        # Variables to hold username and password
+        username = request.form['username']
+        password = request.form['password']
 
-    # Rest of the stuff here
+        # If the credentials are good, then go to logged in page. Else, do nothing for now
+        if check_login_credentials(username, password):
+            return render_template('home.html')
+        else:
+            return render_template('login.html')
+
+    return render_template('login.html')
+
+def check_login_credentials(username, password):
+    # Check if username or password is empty
+    if not username or not password:
+        return False
+
+    # Finds the user that matches the username and store the corresponding database table
+    user = db.find_one('users', {'username': username})
+
+    if user is None:
+        return False
+
+    # Checks if the username and password match the database
+    elif user['username'] == username and check_password_hash(user['password'], password):
+        session['user_id'] = user['_id']
+        return True
+    else:
+        return False
+
 
 @auth_bp.route('/logout')
 def logout():
@@ -30,6 +59,24 @@ def logout():
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        # Handle registration logic
-        pass
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Hash the password
+        hashed_password = generate_password_hash(password).decode('utf-8')
+
+        # Create a new user document
+        user = {
+            'username': username,
+            'email': email,
+            'password': hashed_password
+        }
+
+        # Insert the new user into the database
+        db.insert_one('users', user)
+
+        # Redirect to the login page after successful registration
+        return redirect(url_for('auth.login'))
+
     return render_template('register.html')
