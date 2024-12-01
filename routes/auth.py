@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, session
+from flask import Blueprint, render_template, redirect, url_for, request, session, jsonify
 from flask_bcrypt import generate_password_hash, check_password_hash
 from database_class import Database
 import os
@@ -6,7 +6,7 @@ import os
 auth_bp = Blueprint('auth', __name__)
 
 # Database instance
-db = Database(database_name="users")
+db = Database(database_name="TNSR")
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -26,9 +26,9 @@ def handle_login():
 
         # If the credentials are good, then go to logged in page. Else, do nothing for now
         if check_login_credentials(username, password):
-            return render_template('home.html')
+            return jsonify({'success': True})
         else:
-            return render_template('login.html')
+            return jsonify({'success': False, 'message': 'Invalid username or password'})
 
     return render_template('login.html')
 
@@ -45,7 +45,7 @@ def check_login_credentials(username, password):
 
     # Checks if the username and password match the database
     elif user['username'] == username and check_password_hash(user['password'], password):
-        session['user_id'] = user['_id']
+        session['user_id'] = str(user['_id'])
         return True
     else:
         return False
@@ -63,20 +63,33 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        # Hash the password
-        hashed_password = generate_password_hash(password).decode('utf-8')
+        if email_already_used(email):
+            return jsonify({'message': 'Email already in use'}), 403
 
-        # Create a new user document
-        user = {
-            'username': username,
-            'email': email,
-            'password': hashed_password
-        }
+        # Only add user if email is unique
+        else:
 
-        # Insert the new user into the database
-        db.insert_one('users', user)
+            # Hash the password
+            hashed_password = generate_password_hash(password).decode('utf-8')
 
-        # Redirect to the login page after successful registration
-        return redirect(url_for('auth.login'))
+            # Create a new user document
+            user = {
+                'username': username,
+                'email': email,
+                'password': hashed_password
+            }
+
+            # Insert the new user into the database
+            db.insert_one('users', user)
+
+            # Redirect to the login page after successful registration
+            return redirect(url_for('auth.login'))
 
     return render_template('register.html')
+
+# Function to check if email is already used
+def email_already_used(email):
+    if db.find_one('users', {'student_info.email': email}) is None:
+        return False
+    else:
+        return True

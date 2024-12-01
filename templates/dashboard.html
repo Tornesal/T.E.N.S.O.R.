@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            transition: width 0.3s;
+        }
+        .sidebar.collapsed {
+            width: 64px;
+        }
+        .sidebar.expanded {
+            width: 256px;
+        }
+    </style>
+</head>
+<body class="flex h-screen bg-gray-100">
+    <div id="sidebar" class="sidebar bg-blue-500 text-white h-full expanded">
+        <button id="toggleButton" class="p-4 focus:outline-none">☰</button>
+        <ul class="mt-4">
+            <li class="p-4 hover:bg-blue-600"><a href="{{ url_for('projects.index') }}">Projects</a></li>
+            <li class="p-4 hover:bg-blue-600"><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="flex-1 p-8">
+        <h1 class="text-2xl font-bold">Dashboard</h1>
+        <!-- Main content goes here -->
+    </div>
+
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            var sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('expanded')) {
+                sidebar.classList.remove('expanded');
+                sidebar.classList.add('collapsed');
+            } else {
+                sidebar.classList.remove('collapsed');
+                sidebar.classList.add('expanded');
+            }
+        });
+    </script>
+</body>
+</html>
