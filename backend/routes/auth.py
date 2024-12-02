@@ -1,28 +1,28 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session, jsonify
 from flask_bcrypt import generate_password_hash, check_password_hash
-from database_class import Database
-import os
+from backend.database_class import Database
 
 auth_bp = Blueprint('auth', __name__)
 
 # Database instance
 db = Database(database_name="TNSR")
 
-@auth_bp.route('/login', methods=['GET', 'POST'])
+@auth_bp.route('/api/auth/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         return handle_login()
-    return render_login_template()
-
-def render_login_template():
-    return render_template('login.html')
+    # return render_login_template()
 
 def handle_login():
     # If structure to get the username and password and pass it into the check function
     if request.method == 'POST':
+
+        # Fetching json for text input
+        data = request.get_json()
+
         # Variables to hold username and password
-        username = request.form['username']
-        password = request.form['password']
+        username = data['username']
+        password = data['password']
 
         # If the credentials are good, then go to logged in page. Else, do nothing for now
         if check_login_credentials(username, password):
@@ -30,7 +30,7 @@ def handle_login():
         else:
             return jsonify({'success': False, 'message': 'Invalid username or password'})
 
-    return render_template('login.html')
+    # return render_template('login.html')
 
 def check_login_credentials(username, password):
     # Check if username or password is empty
@@ -59,6 +59,9 @@ def logout():
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+
+        # Fetching json for text input
+        data = request.get_json()
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']

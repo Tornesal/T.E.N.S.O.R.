@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from database_class import Database
 
 projects_bp = Blueprint('projects', __name__)
 
