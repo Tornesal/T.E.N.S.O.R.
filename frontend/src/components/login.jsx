@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const Login = () => {
   // State variables for username, password, and error message
@@ -41,13 +42,13 @@ const Login = () => {
               Username:
             </label>
             <input
-              type="text"
-              id="username"
-              name="username"
-              required
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text"
+                id="username"
+                name="username"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="mb-4">
@@ -55,25 +56,31 @@ const Login = () => {
               Password:
             </label>
             <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="password"
+                id="password"
+                name="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
           >
             Login
           </button>
         </form>
         {message && (
-          <div className="mt-4 text-center text-red-500">{message}</div>
+            <div className="mt-4 text-center text-red-500">{message}</div>
         )}
+        <div className="mt-4 text-center">
+          <span className="text-gray-700">Don't have an account? </span>
+          <Link to="/register" className="text-blue-500 hover:underline">
+            Register
+          </Link>
+        </div>
       </div>
     </div>
   );

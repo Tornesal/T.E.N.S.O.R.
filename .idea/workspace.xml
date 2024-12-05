@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5775f831-6e07-48f7-9db8-3c1f05302b12" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/postcss.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/static/dist/tailwind.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/static/src/tailwind.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/tailwind.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/templates/login.html" afterDir="false" />
+    <list default="true" id="5775f831-6e07-48f7-9db8-3c1f05302b12" name="Changes" comment="Changed directory to accommodate react.">
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/src/components/dashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/src/components/register.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/database_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/database_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/projects.py" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/routes/projects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/src/components/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/src/components/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T.E.N.S.O.R/frontend/src/logo.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,10 +22,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
+        <option value="CSS File" />
         <option value="HTML File" />
         <option value="JavaScript File" />
-        <option value="CSS File" />
+        <option value="Python Script" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -61,29 +55,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Python Projects/T.E.N.S.O.R&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Markdown&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Python Projects/T.E.N.S.O.R",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Python Projects\T.E.N.S.O.R" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Python Projects\T.E.N.S.O.R\backend" />
+      <recent name="E:\Python Projects\T.E.N.S.O.R\frontend\src" />
+      <recent name="E:\Python Projects\T.E.N.S.O.R\frontend\public" />
     </key>
   </component>
   <component name="RunManager">
@@ -101,7 +101,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\Python Projects\T.E.N.S.O.R\app.py" />
+      <option name="SCRIPT_NAME" value="E:\Python Projects\T.E.N.S.O.R\backend\app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -143,7 +143,13 @@
       <workItem from="1733000252318" duration="16000" />
       <workItem from="1733000279923" duration="1313000" />
       <workItem from="1733002673735" duration="7465000" />
-      <workItem from="1733012442411" duration="692000" />
+      <workItem from="1733012442411" duration="4619000" />
+      <workItem from="1733075488510" duration="19769000" />
+      <workItem from="1733103405248" duration="60000" />
+      <workItem from="1733170560608" duration="687000" />
+      <workItem from="1733177197135" duration="71000" />
+      <workItem from="1733187367522" duration="591000" />
+      <workItem from="1733353609521" duration="2411000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -161,7 +167,47 @@
       <option name="project" value="LOCAL" />
       <updated>1732403713813</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="NOT ADDING ENV LIKE AN IDIOT HAHHAHAHHAHAHHA">
+      <option name="closed" value="true" />
+      <created>1733013217942</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733013217942</updated>
+    </task>
+    <task id="LOCAL-00004" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1733013476247</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733013476247</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added login and register functionality">
+      <option name="closed" value="true" />
+      <created>1733016939744</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733016939744</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Login and register functionality added. Working on dashboard.html">
+      <option name="closed" value="true" />
+      <created>1733078295808</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733078295808</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Changed directory to accommodate react.">
+      <option name="closed" value="true" />
+      <created>1733103120664</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733103120664</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,9 +239,14 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="NOT ADDING ENV LIKE AN IDIOT HAHHAHAHHAHAHHA" />
+    <MESSAGE value="gitignore" />
+    <MESSAGE value="Added login and register functionality" />
+    <MESSAGE value="Login and register functionality added. Working on dashboard.html" />
+    <MESSAGE value="Changed directory to accommodate react." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed directory to accommodate react." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/T_E_N_S_O_R_$app.coverage" NAME="app Coverage Results" MODIFIED="1733011938465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../T.E.N.S.O.R" />
+    <SUITE FILE_PATH="coverage/T_E_N_S_O_R_$app.coverage" NAME="app Coverage Results" MODIFIED="1733355316797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../T.E.N.S.O.R" />
   </component>
 </project>

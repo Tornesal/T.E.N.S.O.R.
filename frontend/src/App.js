@@ -1,17 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./components/login"; // Import Login component
+import Login from "./components/login";
+import Register from "./components/register";
+import Dashboard from "./components/dashboard"; // Import Dashboard component
 
 const App = () => (
   <Router>
     <Routes>
-      {/* Define the route for the Login page */}
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/dashboard" element={<Dashboard />} />
 
-      {/* Example route for a dashboard */}
-      <Route path="/dashboard" element={<div>Dashboard Page</div>} />
-
-      {/* Redirect to login page if no other route matches */}
+        {/* Redirect to login page if the route is not found */}
       <Route path="*" element={<Login />} />
     </Routes>
   </Router>
