@@ -45,7 +45,7 @@ def check_login_credentials(username, password):
 
     # Checks if the username and password match the database
     elif user['username'] == username and check_password_hash(user['password'], password):
-        session['user_id'] = str(user['_id'])
+        session['user_id'], session['username'] = str(user['_id']), user['username']
         return True
     else:
         return False
@@ -55,6 +55,7 @@ def check_login_credentials(username, password):
 def logout():
     session.clear()
     return redirect(url_for('auth.login'))
+
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -69,7 +70,10 @@ def register():
         if email_already_used(email):
             return jsonify({'message': 'Email already in use'}), 403
 
-        # Only add user if email is unique
+        elif db.find_one('users', {'username': username}) is not None:
+            return jsonify({'message': 'Username already in use'}), 403
+
+        # Only add user if email and username is unique
         else:
 
             # Hash the password
@@ -79,7 +83,8 @@ def register():
             user = {
                 'username': username,
                 'email': email,
-                'password': hashed_password
+                'password': hashed_password,
+                'projects': []
             }
 
             # Insert the new user into the database
@@ -88,7 +93,6 @@ def register():
             # Redirect to the login page after successful registration
             return redirect(url_for('auth.login'))
 
-    return render_template('register.html')
 
 # Function to check if email is already used
 def email_already_used(email):

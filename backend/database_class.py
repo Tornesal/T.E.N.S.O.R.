@@ -10,6 +10,10 @@ import os
 class Database:
     def __init__(self, uri=None, database_name="your_db_name"):
 
+        # Define the collections in the database
+        self.PROJECTS_COLLECTION = "projects"
+        self.USERS_COLLECTION = "users"
+
         # Load the environment variables from the .env file
         load_dotenv()
 
@@ -46,24 +50,29 @@ class Database:
             except RuntimeError:
                 # Redirect to error page
                 error_message = "Could not connect to the database. Please try again later."
-                redirect(url_for('error', message=error_message))
+                raise Exception(f"Database error: {str(error_message)}")
 
             except Exception as e:
                 # Redirect to error page
                 error_message = "An error occurred while connecting to the database. Please try again later."
-                redirect(url_for('error', message=error_message))
+                raise Exception(f"Database error: {str(error_message)}")
 
         # If connection still fails after 3 attempts
         if self.client is None or self.db is None:
             # Clear the session and redirect to the error page
             session.clear()
             error_message = "Could not connect to the database. Please try again later."
-            redirect(url_for('error', message=error_message))
+            raise Exception(f"Database error: {str(error_message)}")
 
 
     def get_collection(self, collection_name):
-        return self.db[collection_name]
+        try:
+            # Return the collection from the database
+            return self.db[collection_name]
 
+        except PyMongoError as exception:
+            # Redirect to the error page if an error occurs
+            raise Exception(f"Database error: {str(exception)}")
 
     def find_one(self, collection_name, query):
         collection = self.get_collection(collection_name)
@@ -73,8 +82,7 @@ class Database:
         try:
             return collection.find_one(query)
         except PyMongoError as exception:
-            return redirect(url_for('error', message=str(exception)))
-
+            raise Exception(f"Database error: {str(exception)}")
 
     # I use *args and **kwargs to pass any number of arguments to the find method, similar to how it works
     # in the PyMongo library
@@ -86,8 +94,7 @@ class Database:
         try:
             return collection.find(*args, **kwargs)
         except PyMongoError as exception:
-            return redirect(url_for('error', message=str(exception)))
-
+            raise Exception(f"Database error: {str(exception)}")
 
     def insert_one(self, collection_name, document):
         collection = self.get_collection(collection_name)
@@ -97,8 +104,7 @@ class Database:
         try:
             return collection.insert_one(document)
         except PyMongoError as exception:
-            return redirect(url_for('error', message=str(exception)))
-
+            raise Exception(f"Database error: {str(exception)}")
 
     def update_one(self, collection_name, query, new_values):
         collection = self.get_collection(collection_name)
@@ -108,7 +114,7 @@ class Database:
         try:
             return collection.update_one(query, new_values)
         except PyMongoError as exception:
-            return redirect(url_for('error', message=str(exception)))
+            raise Exception(f"Database error: {str(exception)}")
 
 
     def delete_one(self, collection_name, query):
@@ -119,14 +125,41 @@ class Database:
         try:
             return collection.delete_one(query)
         except PyMongoError as exception:
-            return redirect(url_for('error', message=str(exception)))
+            raise Exception(f"Database error: {str(exception)}")
+
+    def get_projects(self, username):
+        try:
+            # Retrieve the user by username
+            users_collection = self.get_collection(self.USERS_COLLECTION)
+            user = users_collection.find_one({"username": username})
+
+            if not user:
+                raise Exception("User not found")
+
+            # Extract project IDs from the user document
+            project_ids = user.get("projects", [])
+
+            # Query the projects collection using the project IDs
+            projects_collection = self.get_collection(self.PROJECTS_COLLECTION)
+            projects = list(projects_collection.find({"_id": {"$in": project_ids}}))
+
+            # Convert ObjectId to string for JSON serialization
+            for project in projects:
+                project["_id"] = str(project["_id"])
+
+            return projects
+
+        except PyMongoError as exception:
+            raise Exception(f"Database error: {str(exception)}")
+
 
     # Custom methods for the project tracking application
-    def add_project(self, project_name, user_id, description=None):
+    def add_project(self, project_id, project_name, username, description=None):
         collection = self.get_collection("projects")
         document = {
+            "_id": project_id,
             "name": project_name,
-            "user_id": user_id,
+            "username": username,
             "description": description,
             "created_at": datetime.utcnow(),
             "metrics": []
@@ -134,14 +167,14 @@ class Database:
         try:
             return collection.insert_one(document)
         except PyMongoError as exception:
-            return redirect(url_for('error', message=str(exception)))
+            raise Exception(f"Database error: {str(exception)}")
 
-
-    def add_metrics(self, project_id, epoch, loss, accuracy):
+    def get_project_metrics(self, project_id):
         collection = self.get_collection("projects")
-        query = {"_id": project_id}
-        new_values = {"$push": {"metrics": {"epoch": epoch, "loss": loss, "accuracy": accuracy}}}
         try:
-            return collection.update_one(query, new_values)
+            project = collection.find_one({"_id": project_id}, {"metrics": 1, "_id": 0})
+            if not project:
+                raise Exception("Project not found")
+            return project.get("metrics", [])
         except PyMongoError as exception:
-            return redirect(url_for('error', message=str(exception)))
+            raise Exception(f"Database error: {str(exception)}")

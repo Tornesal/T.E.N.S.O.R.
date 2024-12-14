@@ -23,7 +23,8 @@ const Dashboard = () => {
     };
 
     fetchProjects();
-    fetchActivities();
+    // TODO Implement the fetchActivities functionality in  the useEffect hook
+    //fetchActivities();
   }, []);
 
   const handleSearch = (event) => {
