@@ -51,10 +51,10 @@ def check_login_credentials(username, password):
         return False
 
 
-@auth_bp.route('/logout')
+@auth_bp.route('/api/auth/logout', methods=['GET'])
 def logout():
     session.clear()
-    return redirect(url_for('auth.login'))
+    return jsonify({'success': True}), 200
 
 
 @auth_bp.route('/register', methods=['GET', 'POST'])

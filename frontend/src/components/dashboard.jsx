@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
+import LogoutButton from "./LogoutButton";
 
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
@@ -10,21 +11,27 @@ const Dashboard = () => {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    // Fetch projects and activities from the backend
     const fetchProjects = async () => {
-      const response = await axios.get("/api/projects");
-      setProjects(response.data);
-      setFilteredProjects(response.data);
+      try {
+        const response = await axios.get("/api/projects");
+        setProjects(response.data);
+        setFilteredProjects(response.data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
     };
 
     const fetchActivities = async () => {
-      const response = await axios.get("/api/activities");
-      setActivities(response.data);
+      try {
+        const response = await axios.get("/api/activities");
+        setActivities(response.data);
+      } catch (error) {
+        console.error("Error fetching activities:", error);
+      }
     };
 
     fetchProjects();
-    // TODO Implement the fetchActivities functionality in  the useEffect hook
-    //fetchActivities();
+    fetchActivities();
   }, []);
 
   const handleSearch = (event) => {
@@ -36,7 +43,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="bg-gray-100 p-8 min-h-screen">
+    <div className="bg-gray-100 p-8 min-h-screen relative">
+      <div className="absolute top-4 right-4">
+        <LogoutButton /> {/* Using the separate LogoutButton component */}
+      </div>
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-6 text-center">Dashboard</h1>
         <div className="mb-6">
@@ -74,7 +84,9 @@ const Dashboard = () => {
               <li key={project.id} className="mb-4 p-4 bg-white rounded-lg shadow">
                 <h3 className="text-xl font-bold">{project.name}</h3>
                 <p>{project.description}</p>
-                <p className="text-gray-500 text-sm">{new Date(project.updated_at).toLocaleDateString()}</p>
+                <p className="text-gray-500 text-sm">
+                  {new Date(project.updated_at).toLocaleDateString()}
+                </p>
               </li>
             ))}
           </ul>

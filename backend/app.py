@@ -11,6 +11,7 @@ import secrets
 from backend.routes.auth import auth_bp
 from backend.routes.main import main_bp
 from backend.routes.projects import projects_bp
+from backend.routes.activities import activities_bp
 
 app = Flask(__name__)
 
@@ -21,6 +22,7 @@ CORS(app, origins=["http://localhost:3000"])
 app.register_blueprint(auth_bp)
 app.register_blueprint(main_bp)
 app.register_blueprint(projects_bp)
+app.register_blueprint(activities_bp)
 
 # Secret key for the session
 app.secret_key = secrets.token_urlsafe(16)
