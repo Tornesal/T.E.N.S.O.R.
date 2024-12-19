@@ -3,12 +3,14 @@ import axios from "axios";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import LogoutButton from "./LogoutButton";
+import ProjectModal from "./ProjectModal";
 
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -45,11 +47,11 @@ const Dashboard = () => {
   return (
     <div className="bg-gray-100 p-8 min-h-screen relative">
       <div className="absolute top-4 right-4">
-        <LogoutButton /> {/* Using the separate LogoutButton component */}
+        <LogoutButton />
       </div>
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-6 text-center">Dashboard</h1>
-        <div className="mb-6">
+        <div className="mb-6 flex justify-between items-center">
           <input
             type="text"
             placeholder="Search projects..."
@@ -57,6 +59,12 @@ const Dashboard = () => {
             onChange={handleSearch}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="ml-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700"
+          >
+            New Project
+          </button>
         </div>
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-4">Activity Tracker</h2>
@@ -92,6 +100,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
+      <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };

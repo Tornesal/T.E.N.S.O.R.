@@ -154,7 +154,7 @@ class Database:
 
 
     # Custom methods for the project tracking application
-    def add_project(self, project_id, project_name, username, description=None):
+    def create_project(self, project_id, project_name, username, description=None):
         collection = self.get_collection("projects")
         document = {
             "_id": project_id,

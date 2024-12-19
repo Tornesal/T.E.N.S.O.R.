@@ -35,3 +35,20 @@ def view_project(project_id):
         return redirect(url_for('auth.login'))
     # Handle viewing a specific project
     return render_template('view_project.html')
+
+@projects_bp.route('/api/projects', methods=['POST'])
+def create_project():
+    try:
+        # Fetch the project name and description from the request
+        data = request.get_json()
+        name = data.get('name', 'Unnamed Project')
+        description = data.get('description', 'No description')
+
+        # Create a new project
+        project_id = db.create_project(session['username'], name, description)
+
+        return jsonify({'success': True, 'project_id': str(project_id)}), 200
+
+    except Exception as e:
+        # Handle and log any errors
+        return jsonify({"error": str(e)}), 500
