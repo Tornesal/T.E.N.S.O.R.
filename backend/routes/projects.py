@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
 from backend.database_class import Database
+import datetime
 
 projects_bp = Blueprint('projects', __name__)
 
@@ -37,18 +38,28 @@ def view_project(project_id):
     return render_template('view_project.html')
 
 @projects_bp.route('/api/projects', methods=['POST'])
-def create_project():
+def create_project(self, project_name, username, description=None):
+    collection = self.get_collection("projects")
+
+    # Find the lowest available ID
+    existing_ids = collection.distinct("_id")
+    numeric_ids = sorted(int(id) for id in existing_ids)
+    new_id = 1
+    for id in numeric_ids:
+        if id != new_id:
+            break
+        new_id += 1
+    new_project_id = str(new_id).zfill(3)
+
+    document = {
+        "_id": new_project_id,
+        "name": project_name,
+        "username": username,
+        "description": description,
+        "created_at": datetime.utcnow(),
+        "metrics": []
+    }
     try:
-        # Fetch the project name and description from the request
-        data = request.get_json()
-        name = data.get('name', 'Unnamed Project')
-        description = data.get('description', 'No description')
-
-        # Create a new project
-        project_id = db.create_project(session['username'], name, description)
-
-        return jsonify({'success': True, 'project_id': str(project_id)}), 200
-
+        return collection.insert_one(document)
     except Exception as e:
-        # Handle and log any errors
-        return jsonify({"error": str(e)}), 500
+        raise Exception(f"Database error: {str(e)}")
