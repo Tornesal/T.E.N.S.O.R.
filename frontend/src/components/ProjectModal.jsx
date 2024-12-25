@@ -8,17 +8,21 @@ const ProjectModal = ({ isOpen, onClose, projectIds }) => {
   const [parameters, setParameters] = useState([{ name: "", value: "" }]);
 
   const handleCreateProject = async () => {
-    try {
-      const response = await axios.post("/api/projects", {
-        name: projectName,
-        description: projectDescription,
-        parameters: parameters,
-      });
-      onClose();
-    } catch (error) {
-      console.error("Error creating project:", error);
+  try {
+    const response = await axios.post("/api/projects", {
+      user_id: sessionStorage.getItem("user_id"),  // Assuming user_id is stored in sessionStorage
+      project_name: projectName,
+      description: projectDescription,
+      parameters: parameters,
+    });
+    if (response.data && response.data._id) {
+      console.log("Project created successfully:", response.data._id);
     }
-  };
+    onClose();
+  } catch (error) {
+    console.error("Error creating project:", error);
+  }
+};
 
   const handleAddParameter = () => {
     setParameters([...parameters, { name: "", value: "" }]);

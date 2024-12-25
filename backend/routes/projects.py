@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
+from pymongo import ReturnDocument
+
 from backend.database_class import Database
 import datetime
 
@@ -38,28 +40,50 @@ def view_project(project_id):
     return render_template('view_project.html')
 
 @projects_bp.route('/api/projects', methods=['POST'])
-def create_project(self, project_name, username, description=None):
-    collection = self.get_collection("projects")
+def create_project():
+    projects_collection = db.get_collection("projects")
+    users_collection = db.get_collection("users")
+    counters_collection = db.get_collection("counters")
 
-    # Find the lowest available ID
-    existing_ids = collection.distinct("_id")
-    numeric_ids = sorted(int(id) for id in existing_ids)
-    new_id = 1
-    for id in numeric_ids:
-        if id != new_id:
-            break
-        new_id += 1
-    new_project_id = str(new_id).zfill(3)
-
-    document = {
-        "_id": new_project_id,
-        "name": project_name,
-        "username": username,
-        "description": description,
-        "created_at": datetime.utcnow(),
-        "metrics": []
-    }
     try:
-        return collection.insert_one(document)
+        # Step 1: Generate a unique project ID
+        new_id = counters_collection.find_one_and_update(
+            {"_id": "project_id"},
+            {"$inc": {"value": 1}},
+            upsert=True,
+            return_document=ReturnDocument.AFTER
+        )["value"]
+        new_project_id = f"proj{str(new_id).zfill(3)}"
+
+        # Fetching json for text input
+        data = request.get_json()
+
+        print(data)
+
+        # Step 2: Prepare the project document
+        current_time = datetime.datetime.utcnow()
+        project_document = {
+            "_id": new_project_id,
+            "name": data['project_name'],
+            "description": data['description'],
+            "user_name": session["username"],
+            "created_at": current_time,
+            "last_updated": current_time,
+            "attributes": data['parameters'],
+            "update_history": []
+        }
+
+        # Step 3: Insert the project into the projects collection
+        projects_collection.insert_one(project_document)
+
+        # Step 4: Update the user document to reference the new project
+        users_collection.update_one(
+            {"username": session["username"]},
+            {"$push": {"projects": new_project_id}}
+        )
+
+        # Return success message
+        return {"_id": new_project_id, "message": "Project created successfully"}
+
     except Exception as e:
         raise Exception(f"Database error: {str(e)}")

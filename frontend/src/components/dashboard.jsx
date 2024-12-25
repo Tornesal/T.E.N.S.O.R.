@@ -7,7 +7,6 @@ import ProjectModal from "./ProjectModal";
 
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
-  const [projectIds, setProjectIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [activities, setActivities] = useState([]);
@@ -19,7 +18,6 @@ const Dashboard = () => {
         const response = await axios.get("/api/projects");
         setProjects(response.data);
         setFilteredProjects(response.data);
-        setProjectIds(response.data.map(project => project.id));
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -102,7 +100,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} projectIds={projectIds} />
+      <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };
