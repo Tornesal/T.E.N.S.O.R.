@@ -15,7 +15,8 @@ def get_activities():
         update_timestamps = []
         for project in projects:
             update_history = project.get("update_history", [])
-            update_timestamps.extend(update_history)  # Already a list of timestamps
+            for update in update_history:
+                update_timestamps.append(update["timestamp"])
 
         # Aggregate timestamps by date and calculate counts
         date_counts = {}

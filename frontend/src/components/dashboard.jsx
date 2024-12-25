@@ -93,7 +93,7 @@ const Dashboard = () => {
                 <h3 className="text-xl font-bold">{project.name}</h3>
                 <p>{project.description}</p>
                 <p className="text-gray-500 text-sm">
-                  {new Date(project.updated_at).toLocaleDateString()}
+                  {new Date(project.last_updated).toLocaleDateString()}
                 </p>
               </li>
             ))}

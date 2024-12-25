@@ -152,6 +152,8 @@ class Database:
         except PyMongoError as exception:
             raise Exception(f"Database error: {str(exception)}")
 
+        except Exception as exception:
+            raise Exception(f"Erm What the Error: {str(exception)}")
 
     # Custom methods for the project tracking application
     def create_project(self, project_id, project_name, username, description=None):
